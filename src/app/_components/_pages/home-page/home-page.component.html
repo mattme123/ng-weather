@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5 pt-4">
+      <div>
+        <weather-input></weather-input>
+      </div>
+    </div>
+    <div class="col-6 pt-4">
+      <weather-green-button [rout]='rout' [text]='text'></weather-green-button>
+    </div>
+    <div class="col-1 pt-1 d-flex justify-content-end">
+      <img src="../../../../assets/icons/bin.png" alt="" height=90>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1 class='text-center'>
+        Current Location
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <weather-current-location [image]='img'></weather-current-location>
+    </div>
+  </div>
+</div>
