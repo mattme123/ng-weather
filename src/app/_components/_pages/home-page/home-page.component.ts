@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
   selector: 'weather-home-page',
@@ -17,11 +18,12 @@ export class HomePageComponent implements OnInit {
     }
   ];
   add: boolean;
-  constructor() { }
+  constructor(private api$: ApiService) { }
 
 
   ngOnInit() {
     this.add = false;
+    this.api$.addLocation(95240);
   }
 
   changeAdd() {

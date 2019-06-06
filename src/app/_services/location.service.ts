@@ -5,5 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class LocationService {
 
-  constructor() { }
+  locations = [];
+  constructor() {
+    setTimeout(() => {
+      console.log(this.locations);
+    }, 3000);
+  }
 }
