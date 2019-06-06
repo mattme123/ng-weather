@@ -10,6 +10,8 @@ import { GreenButtonComponent } from './_components/_shared/green-button/green-b
 import { HomePageComponent } from './_components/_pages/home-page/home-page.component';
 import { DetailsPageComponent } from './_components/_pages/details-page/details-page.component';
 import { InputComponent } from './_components/_shared/input/input.component';
+import { DayDetailsComponent } from './_components/_shared/day-details/day-details.component';
+import { HourDetailsComponent } from './_components/_shared/hour-details/hour-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { InputComponent } from './_components/_shared/input/input.component';
     GreenButtonComponent,
     HomePageComponent,
     DetailsPageComponent,
-    InputComponent
+    InputComponent,
+    DayDetailsComponent,
+    HourDetailsComponent
   ],
   imports: [
     BrowserModule,

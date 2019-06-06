@@ -1,3 +1,29 @@
-<p>
-  details-page works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-start">
+      <div class="back" [routerLink]="['/home']"></div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-2 d-flex justify-content-end">
+      <div class='leftArrow big'></div>
+    </div>
+    <div class="col-8 d-flex justify-content-center">
+      <weather-current-location></weather-current-location>
+    </div>
+    <div class="col-2 d-flex justify-content-start">
+      <div class='rightArrow big'></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 d-flex justify-content-end">
+      <div class='leftArrow small'></div>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <weather-day-details></weather-day-details>
+    </div>
+    <div class="col-3 d-flex justify-content-start">
+      <div class='rightArrow small'></div>
+    </div>
+  </div>
+</div>

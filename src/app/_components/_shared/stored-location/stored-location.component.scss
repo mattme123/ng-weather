@@ -1,0 +1,35 @@
+%po {
+  cursor: pointer;
+}
+
+.bg {
+  height: 5em;
+  width: 25em;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.bg:hover {
+  .delete {
+    background-color: red;
+    height: 2em;
+    width: 2em;
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: 600;
+    padding-top: 0.18em;
+    @extend %po;
+  }
+  .delete:before {
+    content: "X";
+  }
+}
+
+.text {
+  margin-top: 0.36em;
+  color: white;
+}
+
+.point {
+  @extend %po;
+}

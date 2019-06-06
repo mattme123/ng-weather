@@ -3,3 +3,20 @@ h1 {
   color: white;
   font-weight: 600;
 }
+
+#itemRow {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 2vh;
+}
+
+#add {
+  background-image: url(../../../../assets/icons/add.svg);
+  width: 5em;
+  height: 5em;
+  cursor: pointer;
+}
+
+button {
+  width: 5.5em;
+}

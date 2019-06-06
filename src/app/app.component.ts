@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'weather-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'weatherApp';
+export class AppComponent implements OnInit, OnDestroy {
+  constructor() { }
+  ngOnInit() { }
+  ngOnDestroy() { }
 }

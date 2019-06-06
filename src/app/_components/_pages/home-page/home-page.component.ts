@@ -9,9 +9,23 @@ export class HomePageComponent implements OnInit {
   text = 'Add';
   rout = '';
   img = '../../../../assets/photos/cloudy.jpg';
+  deg = 34;
+  locations = [
+    {
+      title: 'San Francisco',
+      degree: 90
+    }
+  ];
+  add: boolean;
   constructor() { }
 
+
   ngOnInit() {
+    this.add = false;
+  }
+
+  changeAdd() {
+    this.add = !this.add;
   }
 
 }

@@ -1,3 +1,19 @@
-<p>
-  stored-location works!
-</p>
+<div class='container bg' [style.background-image]="'url(' + image + ')'" id={{id}}>
+  <div class="row">
+    <div class="col-1">
+      <div (click)='delete()' [routerLink]="['/home']" class='delete text-center'></div>
+    </div>
+    <div [routerLink]="['/details']" class="col-9 point">
+      <h1 class='d-flex justify-content-start text'>
+        {{title}}
+      </h1>
+    </div>
+    <div [routerLink]="['/details']" class="col-1 point"> </div>
+    <div class="col-1">
+      <h1 class='d-flex justify-content-end deg text'>
+        {{degree}}º
+      </h1>
+    </div>
+  </div>
+
+</div>

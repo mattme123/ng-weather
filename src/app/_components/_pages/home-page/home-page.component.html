@@ -1,27 +1,34 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 pt-4">
-      <div>
-        <weather-input></weather-input>
-      </div>
-    </div>
-    <div class="col-6 pt-4">
-      <weather-green-button [rout]='rout' [text]='text'></weather-green-button>
-    </div>
-    <div class="col-1 pt-1 d-flex justify-content-end">
-      <img src="../../../../assets/icons/bin.png" alt="" height=90>
-    </div>
-  </div>
-  <div class="row mt-4">
     <div class="col-12">
       <h1 class='text-center'>
         Current Location
       </h1>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-12 d-flex justify-content-center">
-      <weather-current-location [image]='img'></weather-current-location>
+      <weather-current-location [routerLink]="['/details']" [image]='img'></weather-current-location>
+    </div>
+  </div>
+  <div class="row" id='itemRow'>
+    <div *ngFor='let location of locations; index as i' class="col-4 mt-3">
+      <weather-stored-location [image]='img' [id]='i' [title]='location.title' [degree]='deg'>
+      </weather-stored-location>
+    </div>
+  </div>
+  <div *ngIf='!add' class="row mt-4">
+    <div class="col-12 d-flex justify-content-center">
+      <div (click)='changeAdd()' id='add'></div>
+    </div>
+  </div>
+  <div *ngIf='add' class='row mt-4'>
+    <div class="col-12 d-flex justify-content-center">
+      <weather-input></weather-input>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <button (click)='changeAdd()' type='button' class='btn btn-danger mr-1 mt-2'>Cancel</button>
+      <button (click)='changeAdd()' type='button' class='btn btn-success ml-1 mt-2'>Add</button>
     </div>
   </div>
 </div>
