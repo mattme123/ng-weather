@@ -3,8 +3,8 @@
 }
 
 .bg {
-  height: 5em;
-  width: 25em;
+  height: 10vh;
+  width: 25vw;
   background-color: white;
   border-radius: 50px;
 }
@@ -26,10 +26,14 @@
 }
 
 .text {
-  margin-top: 0.36em;
+  margin-top: 2.25vh;
   color: white;
 }
 
 .point {
   @extend %po;
+}
+
+h1{
+  font-size: 2vw;
 }

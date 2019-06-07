@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
+import { LocationService } from 'src/app/_services/location.service';
 
 @Component({
   selector: 'weather-home-page',
@@ -7,27 +8,23 @@ import { ApiService } from 'src/app/_services/api.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  text = 'Add';
-  rout = '';
-  img = '../../../../assets/photos/cloudy.jpg';
-  deg = 34;
-  locations = [
-    {
-      title: 'San Francisco',
-      degree: 90
-    }
-  ];
+  listFull: boolean;
   add: boolean;
-  constructor(private api$: ApiService) { }
+  constructor(private api$: ApiService, public location$: LocationService) { }
 
 
   ngOnInit() {
     this.add = false;
-    this.api$.addLocation(95240);
+    this.listFull = false;
   }
 
   changeAdd() {
     this.add = !this.add;
+  }
+
+  addItem() {
+    this.api$.addLocation(95240);
+    this.changeAdd();
   }
 
 }
