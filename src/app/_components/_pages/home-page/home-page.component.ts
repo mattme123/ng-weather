@@ -10,6 +10,8 @@ import { LocationService } from 'src/app/_services/location.service';
 export class HomePageComponent implements OnInit {
   listFull: boolean;
   add: boolean;
+  t = '';
+  img = '../../../../assets/photos/home.jpg';
   constructor(private api$: ApiService, public location$: LocationService) { }
 
 
@@ -23,8 +25,13 @@ export class HomePageComponent implements OnInit {
   }
 
   addItem() {
-    this.api$.addLocation(95240);
+    this.api$.addLocation(this.t);
     this.changeAdd();
+    if (this.location$.locations.length === 8) {
+      this.listFull = true;
+    } else {
+      this.listFull = false;
+    }
   }
 
 }

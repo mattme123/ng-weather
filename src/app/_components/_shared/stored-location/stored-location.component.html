@@ -1,7 +1,7 @@
 <div class='container-fluid bg' [style.background-image]="'url(' + image + ')'" id={{id}}>
   <div class="row">
     <div class="col-1">
-      <div (click)='delete()' [routerLink]="['/home']" class='delete text-center'></div>
+      <div (click)='delete($event)' class='delete text-center'></div>
     </div>
     <div [routerLink]="['/details']" class="col-8 point">
       <h1 class='d-flex justify-content-start text'>

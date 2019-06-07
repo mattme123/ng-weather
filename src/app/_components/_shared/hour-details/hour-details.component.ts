@@ -10,6 +10,7 @@ export class HourDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

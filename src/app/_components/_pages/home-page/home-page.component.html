@@ -13,7 +13,7 @@
   </div>
   <div class="row" id='itemRow'>
     <div *ngFor='let location of location$.locations; index as i' class="col-4 mt-3">
-      <weather-stored-location [image]='img' [id]='i' [title]='location.title' [degree]='deg'>
+      <weather-stored-location [image]='img' [id]='i' [title]='location.name' [degree]='location.temp'>
       </weather-stored-location>
     </div>
   </div>
@@ -24,7 +24,7 @@
   </div>
   <div *ngIf='add && !listFull' class='row mt-4'>
     <div class="col-12 d-flex justify-content-center">
-      <weather-input></weather-input>
+      <input [(ngModel)]='t' type="text" class="form-control" placeholder="Add City">
     </div>
     <div class="col-12 d-flex justify-content-center">
       <button (click)='changeAdd()' type='button' class='btn btn-danger mr-1 mt-2'>Cancel</button>

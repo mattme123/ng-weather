@@ -1,3 +1,5 @@
+import { Ihour } from './ihour';
+
 export interface Iweather {
     clouds: number;
     time: number;
@@ -10,7 +12,7 @@ export interface Iweather {
     description: string;
     windDirection: string;
     windSpeed: number;
-    forcast?: Array<Iweather>;
+    forcast?: Array<Ihour>;
 }
 
 

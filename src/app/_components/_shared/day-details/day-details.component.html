@@ -2,17 +2,17 @@
   <div class="row mt-2">
     <div class="col-5 d-flex justify-content-center">
       <h1>
-        Wednesday
+        {{location.date}}
       </h1>
     </div>
     <div class="col-3">
       <h1 class='noBold'>
-        Clouds
+        {{location.description}}
       </h1>
     </div>
     <div class="col-4">
       <h1 class='noBold'>
-        68º/55º
+        {{location.tempMax}}º/{{location.tempMin}}º
       </h1>
     </div>
   </div>
@@ -30,24 +30,24 @@
   <div class="row mt-1">
     <div class="col d-flex justify-content-center">
       <h3 class="noBold">
-        Wind: 2mph
+        Wind Speed: {{location.windSpeed}}mph
       </h3>
     </div>
     <div class="col d-flex justify-content-center">
       <h3 class="noBold">
-        Direction: N
+        Direction: {{location.windDirection}}
       </h3>
     </div>
     <div class="col d-flex justify-content-center">
       <h3 class="noBold">
-        Humidity: 100%
+        Humidity: {{location.humitidy}}%
       </h3>
     </div>
   </div>
   <div class="row mt-1">
     <div class="col-12">
       <h3 class="text-center noBold">
-        Conditions: Hot and Sunny
+        Conditions: {{location.description}}
       </h3>
     </div>
   </div>

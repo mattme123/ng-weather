@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LocationService } from 'src/app/_services/location.service';
 
 @Component({
   selector: 'weather-stored-location',
@@ -12,13 +13,13 @@ export class StoredLocationComponent implements OnInit {
   @Input() image: string;
 
 
-  constructor() { }
+  constructor(private location$: LocationService) { }
 
   ngOnInit() {
   }
 
-  delete() {
-    alert('You clicked the delete btn');
+  delete(e) {
+    this.location$.locations.splice(e.target.parentElement.parentElement.parentElement.id, 1);
   }
 
 }

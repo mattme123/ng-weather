@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from 'src/app/_services/location.service';
 
 @Component({
   selector: 'weather-details-page',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location$: LocationService) { }
 
   ngOnInit() {
+  }
+
+  leftBig() {
+    this.location$.previousLocation();
+  }
+
+  rightBig() {
+    this.location$.nextLocation();
   }
 
 }
