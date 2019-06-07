@@ -27,11 +27,11 @@ export class HomePageComponent implements OnInit {
   addItem() {
     this.api$.addLocation(this.t);
     this.changeAdd();
-    if (this.location$.locations.length === 8) {
-      this.listFull = true;
-    } else {
-      this.listFull = false;
-    }
+    /*     if (this.location$.locations.length === 8) {
+          this.listFull = true;
+        } else {
+          this.listFull = false;
+        } */
   }
 
 }

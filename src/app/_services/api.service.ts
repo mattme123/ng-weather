@@ -60,6 +60,10 @@ export class ApiService implements OnInit {
                   this.forcastTempObj.clouds = i.clouds.all;
                   this.forcastTempObj.temp = this.convertTemp(i.main.temp);
                   this.forcastTempObj.time = this.convertTime(i.dt);
+                  this.forcastTempObj.description = i.weather[0].main;
+                  this.forcastTempObj.tempMin = this.convertTemp(i.main.temp_min);
+                  this.forcastTempObj.tempMax = this.convertTemp(i.main.temp_max);
+                  this.forcastTempObj.humitidy = i.main.humidity;
                   this.tempObj.forcast.push(this.forcastTempObj);
                   this.forcastTempObjReset();
                 }
@@ -93,9 +97,14 @@ export class ApiService implements OnInit {
 
   forcastTempObjReset() {
     this.forcastTempObj = {
+      temp: 0,
       clouds: 0,
       time: 0,
-      temp: 0
+      description: '',
+      windDirection: 0,
+      tempMin: 0,
+      tempMax: 0,
+      humitidy: 0,
     };
   }
 

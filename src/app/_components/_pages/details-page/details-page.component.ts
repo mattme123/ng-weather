@@ -21,4 +21,12 @@ export class DetailsPageComponent implements OnInit {
     this.location$.nextLocation();
   }
 
+  leftSmall() {
+    this.location$.previousDay();
+  }
+
+  rightSmall() {
+    this.location$.nextDay();
+  }
+
 }
