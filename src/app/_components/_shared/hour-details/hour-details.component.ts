@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LocationService } from 'src/app/_services/location.service';
-import { Ihour } from 'src/app/ihour';
 
 @Component({
   selector: 'weather-hour-details',
@@ -10,9 +8,14 @@ import { Ihour } from 'src/app/ihour';
 export class HourDetailsComponent implements OnInit {
   @Input() time: number;
   @Input() temp: number;
+  @Input() sufix: number;
   constructor() { }
   ngOnInit() {
-
+    if (this.time === 14) {
+      this.time = 12;
+    } else if (this.time === 20) {
+      this.time = 8;
+    }
   }
 
 }

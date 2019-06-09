@@ -9,8 +9,21 @@ import { LocationService } from 'src/app/_services/location.service';
 export class DetailsPageComponent implements OnInit {
 
   constructor(private location$: LocationService) { }
-
+  left: boolean;
+  right: boolean;
   ngOnInit() {
+    this.location$.left
+      .subscribe(
+        res => {
+          this.left = res;
+        }
+      );
+    this.location$.right
+      .subscribe(
+        res => {
+          this.right = res;
+        }
+      );
   }
 
   leftBig() {

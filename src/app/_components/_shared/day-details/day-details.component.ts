@@ -8,33 +8,36 @@ import { Ihour } from 'src/app/ihour';
   styleUrls: ['./day-details.component.scss']
 })
 export class DayDetailsComponent implements OnInit {
-  eight;
-  twelve;
-  pm;
+  eight: any;
+  twelve: any;
+  pm: any;
   location;
-  locDetails: Ihour[];
+  a: string;
+  p: string;
   constructor(private location$: LocationService) {
-    this.locDetails = [];
+    this.a = 'am';
+    this.p = 'pm';
   }
 
   ngOnInit() {
-    this.location$.nextDay();
     this.location$.$selectedLocation
       .subscribe(
         res => {
           this.location = res;
+          this.next();
         },
         err => {
           console.log(err);
           alert(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
         }
       );
+  }
 
+  next() {
     this.location$.$eightHour
       .subscribe(
         res => {
-          this.eight = res;
-          this.locDetails.push(this.eight);
+          this.eight = this.location.forcast[res];
         },
         err => {
           console.log(err);
@@ -44,8 +47,7 @@ export class DayDetailsComponent implements OnInit {
     this.location$.$twelveHour
       .subscribe(
         res => {
-          this.twelve = res;
-          this.locDetails.push(this.twelve);
+          this.twelve = this.location.forcast[res];
         },
         err => {
           console.log(err);
@@ -56,17 +58,13 @@ export class DayDetailsComponent implements OnInit {
     this.location$.$pmHour
       .subscribe(
         res => {
-          this.pm = res;
-          this.locDetails.push(this.pm);
-          console.log(this.pm);
+          this.pm = this.location.forcast[res];
         },
         err => {
           console.log(err);
           alert(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
         }
       );
-
-
   }
 
 }

@@ -50,6 +50,7 @@ export class ApiService implements OnInit {
           this.tempObj.windSpeed = Number((res.wind.speed * 2.23694).toFixed(0));
           this.httpGet(this.weatherForcastURL + res.id + this.apiKey).subscribe(
             secondRes => {
+              console.log(secondRes);
               for (const i of secondRes.list) {
                 if (this.convertTime(i.dt) > 8) {
                   this.start = true;
@@ -70,7 +71,7 @@ export class ApiService implements OnInit {
               }
               this.location$.locations.push(this.tempObj);
               this.tempObjReset();
-              this.location$.getFirstLocation();
+             // this.location$.getFirstLocation();
             });
         },
         err => {

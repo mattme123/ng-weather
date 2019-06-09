@@ -17,13 +17,13 @@
   </div>
   <div class="row">
     <div class="col d-flex justify-content-end">
-      <div (click)='leftSmall()' class='leftArrow small'></div>
+      <div *ngIf='left' (click)='leftSmall()' class='leftArrow small'></div>
     </div>
     <div class="col-8 d-flex justify-content-center">
       <weather-day-details></weather-day-details>
     </div>
     <div class="col d-flex justify-content-start">
-      <div (click)='rightSmall()' class='rightArrow small'></div>
+      <div *ngIf='right' (click)='rightSmall()' class='rightArrow small'></div>
     </div>
   </div>
 </div>

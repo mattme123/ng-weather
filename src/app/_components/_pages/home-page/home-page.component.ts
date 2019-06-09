@@ -10,6 +10,7 @@ import { LocationService } from 'src/app/_services/location.service';
 export class HomePageComponent implements OnInit {
   listFull: boolean;
   add: boolean;
+  ok = false;
   t = '';
   img = '../../../../assets/photos/home.jpg';
   constructor(private api$: ApiService, public location$: LocationService) { }
@@ -27,11 +28,15 @@ export class HomePageComponent implements OnInit {
   addItem() {
     this.api$.addLocation(this.t);
     this.changeAdd();
-    /*     if (this.location$.locations.length === 8) {
-          this.listFull = true;
-        } else {
-          this.listFull = false;
-        } */
+    if (this.location$.locations.length === 8) {
+      this.listFull = true;
+    } else {
+      this.listFull = false;
+    }
+  }
+
+  weatherClicked(e) {
+    this.location$.setLocation(e.target.id);
   }
 
 }

@@ -8,12 +8,12 @@
   </div>
   <div class="row mt-4">
     <div class="col-12 d-flex justify-content-center">
-      <weather-current-location [routerLink]="['/details']" [image]='img'></weather-current-location>
+      <weather-current-location></weather-current-location>
     </div>
   </div>
   <div class="row" id='itemRow'>
     <div *ngFor='let location of location$.locations; index as i' class="col-4 mt-3">
-      <weather-stored-location [image]='img' [id]='i' [title]='location.name' [degree]='location.temp'>
+      <weather-stored-location (click)='weatherClicked($event)' [image]='img' [id]='i' [title]='location.name' [degree]='location.temp'>
       </weather-stored-location>
     </div>
   </div>
