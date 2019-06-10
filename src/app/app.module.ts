@@ -14,6 +14,7 @@ import { DetailsPageComponent } from './_components/_pages/details-page/details-
 import { InputComponent } from './_components/_shared/input/input.component';
 import { DayDetailsComponent } from './_components/_shared/day-details/day-details.component';
 import { HourDetailsComponent } from './_components/_shared/hour-details/hour-details.component';
+import { CurrentLocationGeoComponent } from './_components/_shared/current-location-geo/current-location-geo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HourDetailsComponent } from './_components/_shared/hour-details/hour-de
     DetailsPageComponent,
     InputComponent,
     DayDetailsComponent,
-    HourDetailsComponent
+    HourDetailsComponent,
+    CurrentLocationGeoComponent
   ],
   imports: [
     BrowserModule,

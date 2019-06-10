@@ -31,12 +31,15 @@ export class ApiService implements OnInit {
 
   ngOnInit() { }
 
+  currentLocationHttpGet(lat: string, lon: string): Observable<any> {
+    return this.http$.get<any>(`${this.locationCurrent}lat=${lat}&lon=${lon}&units=imperial${this.apiKey}`);
+  }
+
   httpGet(url: any): Observable<any> {
     return this.http$.get<any>(url);
   }
 
-  addLocation(url: any): boolean {
-    let i: boolean;
+  addLocation(url: any) {
     this.httpGet(this.weatherURLZip + url + this.apiKey)
       .subscribe(
         res => {
@@ -89,11 +92,10 @@ export class ApiService implements OnInit {
               this.t = 1;
               this.tt = 1;
             });
-          i = true;
         },
         err => {
+          alert('City Not Found');
           console.log(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
-          i = false;
         });
   }
 

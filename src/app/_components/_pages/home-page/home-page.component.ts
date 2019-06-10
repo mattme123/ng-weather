@@ -32,10 +32,10 @@ export class HomePageComponent implements OnInit {
   }
 
   addItem() {
-    let ipt = document.getElementById('ipt') as HTMLInputElement;
-    if (this.validateString(this.t) && this.api$.addLocation(this.t)) {
+    const ipt = document.getElementById('ipt') as HTMLInputElement;
+    if (this.validateString(this.t)) {
+      this.api$.addLocation(this.t);
       ipt.className = 'form-control black-border';
-      console.log(ipt.className);
       this.changeAdd();
       if (this.location$.locations.length === 8) {
         this.location$.$listFull.next(true);
@@ -43,7 +43,10 @@ export class HomePageComponent implements OnInit {
         this.location$.$listFull.next(false);
       }
     } else {
-      ipt.className = 'form-control red-border';
+      ipt.className = 'form-control red-border shake';
+      setTimeout(() => {
+        ipt.className = 'form-control red-border';
+      }, 500);
     }
   }
 
@@ -55,10 +58,9 @@ export class HomePageComponent implements OnInit {
 
   validateString(inputTxt: string) {
     const letters = /^[a-zA-Z0-9]+$/;
-    if (inputTxt.match(letters)) {
+    if (inputTxt.match(letters) && Number(inputTxt) && inputTxt.length === 5) {
       return true;
     } else {
-      alert('Invalid');
       return false;
     }
   }

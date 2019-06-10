@@ -28,3 +28,45 @@ button {
 .black-border {
   border-color: black;
 }
+
+.shake {
+  visibility: visible !important;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-duration: 0.4s;
+  animation-name: shake;
+  -webkit-animation-name: shake;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-iteration-count: 1;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  16%,
+  50%,
+  83% {
+    transform: translateX(-10px);
+  }
+  33%,
+  66% {
+    transform: translateX(10px);
+  }
+}
+@-webkit-keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+  }
+  16%,
+  50%,
+  83% {
+    -webkit-transform: translateX(-10px);
+  }
+  33%,
+  66% {
+    -webkit-transform: translateX(10px);
+  }
+}

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/_services/location.service';
-import { Ihour } from 'src/app/ihour';
 
 @Component({
   selector: 'weather-day-details',
@@ -37,6 +36,7 @@ export class DayDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.location = res;
+          this.resetHighAndLow();
           for (let i = 0; i < this.location.forcast.length; i++) {
             if (i < 8 && this.location.forcast[i].tempMax > this.day1H) {
               this.day1H = this.location.forcast[i].tempMax;
@@ -72,7 +72,6 @@ export class DayDetailsComponent implements OnInit {
     this.location$.$eightHour
       .subscribe(
         res => {
-          console.log(res);
           this.eight = this.location.forcast[res];
           if (res === 2) {
             this.high = this.day1H;
@@ -119,6 +118,18 @@ export class DayDetailsComponent implements OnInit {
       );
 
 
+  }
+  resetHighAndLow() {
+    this.day1L = 1000;
+    this.day1H = 0;
+    this.day2L = 1000;
+    this.day2H = 0;
+    this.day3L = 1000;
+    this.day3H = 0;
+    this.day4L = 1000;
+    this.day4H = 0;
+    this.high = 0;
+    this.low = 0;
   }
 
 }

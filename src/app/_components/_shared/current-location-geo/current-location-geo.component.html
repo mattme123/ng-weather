@@ -1,0 +1,17 @@
+<div id='border-mine' [style.background-image]="'url(' + image + ')'">
+  <div *ngIf='loaded' class="row pt-1">
+    <div class="col-12">
+      <h1 class='text-center'>
+        {{loc}}
+      </h1>
+      <h1 class='text-center mt-4'>
+        {{temp}}º
+      </h1>
+    </div>
+  </div>
+  <div *ngIf='!loaded' class="row pt-4">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>

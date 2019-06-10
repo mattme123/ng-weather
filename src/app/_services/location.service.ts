@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Iweather } from '../iweather';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class LocationService implements OnInit {
 
   locations: Iweather[];
   $i = new BehaviorSubject<number>(0);
@@ -16,22 +16,33 @@ export class LocationService {
   $left = new BehaviorSubject<boolean>(false);
   $right = new BehaviorSubject<boolean>(true);
   $listFull = new BehaviorSubject<boolean>(false);
+  location = {};
+
+
+  ngOnInit() {
+
+  }
+
   constructor() {
     this.locations = [];
   }
 
   setLocation(i: number) {
     this.$selectedLocation.next(this.locations[i]);
+    this.$i.next(i);
+    console.log(this.$i.value);
     this.resetDay();
   }
 
   nextLocation() {
     const i = this.$i.value;
-    if (i + 1 === this.locations.length) {
+    console.log(Number(i) + 1);
+    console.log(this.locations.length);
+    if (Number(i) + 1 === this.locations.length) {
       this.$i.next(0);
       this.$selectedLocation.next(this.locations[0]);
     } else {
-      this.$i.next(i + 1);
+      this.$i.next(Number(i) + 1);
       this.$selectedLocation.next(this.locations[this.$i.value]);
     }
     this.resetDay();
@@ -39,11 +50,11 @@ export class LocationService {
 
   previousLocation() {
     const i = this.$i.value;
-    if (i === 0) {
+    if (Number(i) === 0) {
       this.$i.next(this.locations.length - 1);
       this.$selectedLocation.next(this.locations[this.$i.value]);
     } else {
-      this.$i.next(i - 1);
+      this.$i.next(Number(i) - 1);
       this.$selectedLocation.next(this.locations[this.$i.value]);
     }
     this.resetDay();
@@ -51,7 +62,7 @@ export class LocationService {
 
   nextDay() {
     console.log(this.$eightHour.value);
-    if (this.$eightHour.value < 26) {
+    if (this.$eightHour.value < 25) {
       const i = this.$eightHour.value;
       this.$eightHour.next(i + 8);
       const ii = this.$twelveHour.value;
@@ -61,6 +72,7 @@ export class LocationService {
       this.$right.next(true);
       this.$left.next(true);
     }
+    console.log(this.$eightHour.value);
     if (this.$eightHour.value === 26) {
       this.$right.next(false);
       this.$left.next(true);
