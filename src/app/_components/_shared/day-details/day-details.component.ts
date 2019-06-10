@@ -11,6 +11,19 @@ export class DayDetailsComponent implements OnInit {
   eight: any;
   twelve: any;
   pm: any;
+  loaded1 = false;
+  loaded2 = false;
+  loaded3 = false;
+  day1L = 1000;
+  day1H = 0;
+  day2L = 1000;
+  day2H = 0;
+  day3L = 1000;
+  day3H = 0;
+  day4L = 1000;
+  day4H = 0;
+  high: number;
+  low: number;
   location;
   a: string;
   p: string;
@@ -24,7 +37,29 @@ export class DayDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.location = res;
-          this.next();
+          for (let i = 0; i < this.location.forcast.length; i++) {
+            if (i < 8 && this.location.forcast[i].tempMax > this.day1H) {
+              this.day1H = this.location.forcast[i].tempMax;
+            } else if (i > 7 && i < 16 && this.location.forcast[i].tempMax > this.day2H) {
+              this.day2H = this.location.forcast[i].tempMax;
+            } else if (i > 15 && i < 24 && this.location.forcast[i].tempMax > this.day3H) {
+              this.day3H = this.location.forcast[i].tempMax;
+            } else if (i > 23 && this.location.forcast[i].tempMax > this.day4H) {
+              this.day4H = this.location.forcast[i].tempMax;
+            }
+            if (i < 8 && this.location.forcast[i].tempMin < this.day1L) {
+              this.day1L = this.location.forcast[i].tempMin;
+            } else if (i > 7 && i < 16 && this.location.forcast[i].tempMin < this.day2L) {
+              this.day2L = this.location.forcast[i].tempMin;
+            } else if (i > 15 && i < 24 && this.location.forcast[i].tempMin < this.day3L) {
+              this.day3L = this.location.forcast[i].tempMin;
+            } else if (i > 23 && this.location.forcast[i].tempMin < this.day4L) {
+              this.day4L = this.location.forcast[i].tempMin;
+            }
+          }
+          setTimeout(() => {
+            this.next();
+          }, 300);
         },
         err => {
           console.log(err);
@@ -37,7 +72,22 @@ export class DayDetailsComponent implements OnInit {
     this.location$.$eightHour
       .subscribe(
         res => {
+          console.log(res);
           this.eight = this.location.forcast[res];
+          if (res === 2) {
+            this.high = this.day1H;
+            this.low = this.day1L;
+          } else if (res === 10) {
+            this.high = this.day2H;
+            this.low = this.day2L;
+          } else if (res === 18) {
+            this.high = this.day3H;
+            this.low = this.day3L;
+          } else if (res < 26) {
+            this.high = this.day4H;
+            this.low = this.day4L;
+          }
+          this.loaded1 = true;
         },
         err => {
           console.log(err);
@@ -48,6 +98,7 @@ export class DayDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.twelve = this.location.forcast[res];
+          this.loaded2 = true;
         },
         err => {
           console.log(err);
@@ -59,12 +110,15 @@ export class DayDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.pm = this.location.forcast[res];
+          this.loaded3 = true;
         },
         err => {
           console.log(err);
           alert(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
         }
       );
+
+
   }
 
 }

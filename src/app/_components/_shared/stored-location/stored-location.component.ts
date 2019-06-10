@@ -20,6 +20,7 @@ export class StoredLocationComponent implements OnInit {
 
   delete(e) {
     this.location$.locations.splice(e.target.parentElement.parentElement.parentElement.id, 1);
+    this.location$.$listFull.next(false);
   }
 
 }

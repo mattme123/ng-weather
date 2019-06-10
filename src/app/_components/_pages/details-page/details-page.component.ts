@@ -12,13 +12,13 @@ export class DetailsPageComponent implements OnInit {
   left: boolean;
   right: boolean;
   ngOnInit() {
-    this.location$.left
+    this.location$.$left
       .subscribe(
         res => {
           this.left = res;
         }
       );
-    this.location$.right
+    this.location$.$right
       .subscribe(
         res => {
           this.right = res;

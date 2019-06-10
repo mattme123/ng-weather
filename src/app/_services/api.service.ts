@@ -16,6 +16,8 @@ export class ApiService implements OnInit {
   locationCurrent = 'https://api.openweathermap.org/data/2.5/weather?';
   go = false;
   counter = 1;
+  t = 1;
+  tt = 1;
   apiKey = '&APPID=815a624a29a477de2d5976b087f93f21';
 
   tempObj: Iweather;
@@ -33,7 +35,8 @@ export class ApiService implements OnInit {
     return this.http$.get<any>(url);
   }
 
-  addLocation(url: any) {
+  addLocation(url: any): boolean {
+    let i: boolean;
     this.httpGet(this.weatherURLZip + url + this.apiKey)
       .subscribe(
         res => {
@@ -50,33 +53,47 @@ export class ApiService implements OnInit {
           this.tempObj.windSpeed = Number((res.wind.speed * 2.23694).toFixed(0));
           this.httpGet(this.weatherForcastURL + res.id + this.apiKey).subscribe(
             secondRes => {
-              console.log(secondRes);
               for (const i of secondRes.list) {
-                if (this.convertTime(i.dt) > 8) {
+                if (this.convertTime(i.dt) > 2) {
                   this.start = true;
-                } else if (this.convertTime(i.dt) === 8 && this.start) {
+                }
+                if (this.convertTime(i.dt) === 2 && this.start) {
                   this.go = true;
                 }
-                if ((this.convertTime(i.dt) === 8 || this.convertTime(i.dt) === 14 || this.convertTime(i.dt) === 20) && this.go) {
+                if (this.go) {
                   this.forcastTempObj.clouds = i.clouds.all;
                   this.forcastTempObj.temp = this.convertTemp(i.main.temp);
                   this.forcastTempObj.time = this.convertTime(i.dt);
-                  this.forcastTempObj.description = i.weather[0].main;
+                  this.forcastTempObj.date = this.convertDate(d.getDay() + this.t);
+                  this.forcastTempObj.summary = i.weather[0].main;
+                  this.forcastTempObj.description = i.weather[0].description;
+                  this.forcastTempObj.windSpeed = Number((i.wind.speed * 2.23694).toFixed(0));
+                  this.forcastTempObj.windDirection = i.wind.deg;
                   this.forcastTempObj.tempMin = this.convertTemp(i.main.temp_min);
                   this.forcastTempObj.tempMax = this.convertTemp(i.main.temp_max);
                   this.forcastTempObj.humitidy = i.main.humidity;
                   this.tempObj.forcast.push(this.forcastTempObj);
                   this.forcastTempObjReset();
+                  if (this.tt === 8) {
+                    this.t++;
+                    this.tt = 1;
+                  } else {
+                    this.tt++;
+                  }
                 }
               }
               this.location$.locations.push(this.tempObj);
               this.tempObjReset();
-             // this.location$.getFirstLocation();
+              this.start = false;
+              this.go = false;
+              this.t = 1;
+              this.tt = 1;
             });
+          i = true;
         },
         err => {
-          console.log(err);
-          alert(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
+          console.log(`HTTP GET ERROR - ${err.error.cod} - ${err.error.message}`);
+          i = false;
         });
   }
 
@@ -101,7 +118,9 @@ export class ApiService implements OnInit {
       temp: 0,
       clouds: 0,
       time: 0,
+      summary: '',
       description: '',
+      windSpeed: 0,
       windDirection: 0,
       tempMin: 0,
       tempMax: 0,

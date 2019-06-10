@@ -9,22 +9,20 @@ export class LocationService {
 
   locations: Iweather[];
   $i = new BehaviorSubject<number>(0);
-  $eightHour = new BehaviorSubject<any>(0);
-  $twelveHour = new BehaviorSubject<any>(1);
-  $pmHour = new BehaviorSubject<any>(2);
-  $selectedLocation = new BehaviorSubject<any>({});
-  left = new BehaviorSubject<boolean>(false);
-  right = new BehaviorSubject<boolean>(true);
+  $eightHour = new BehaviorSubject<any>(2);
+  $twelveHour = new BehaviorSubject<any>(4);
+  $pmHour = new BehaviorSubject<any>(6);
+  $selectedLocation = new BehaviorSubject<any>('');
+  $left = new BehaviorSubject<boolean>(false);
+  $right = new BehaviorSubject<boolean>(true);
+  $listFull = new BehaviorSubject<boolean>(false);
   constructor() {
     this.locations = [];
   }
 
-  getFirstLocation() {
-    this.$selectedLocation.next(this.locations[0]);
-  }
-
   setLocation(i: number) {
     this.$selectedLocation.next(this.locations[i]);
+    this.resetDay();
   }
 
   nextLocation() {
@@ -52,53 +50,45 @@ export class LocationService {
   }
 
   nextDay() {
-    if (this.$eightHour.value < 9) {
+    console.log(this.$eightHour.value);
+    if (this.$eightHour.value < 26) {
       const i = this.$eightHour.value;
-      this.$eightHour.next(i + 3);
+      this.$eightHour.next(i + 8);
       const ii = this.$twelveHour.value;
-      this.$twelveHour.next(ii + 3);
+      this.$twelveHour.next(ii + 8);
       const iii = this.$pmHour.value;
-      this.$pmHour.next(iii + 3);
-      this.right.next(true);
-      this.left.next(true);
+      this.$pmHour.next(iii + 8);
+      this.$right.next(true);
+      this.$left.next(true);
     }
-    if (this.$eightHour.value === 9) {
-      this.right.next(false);
-      this.left.next(true);
+    if (this.$eightHour.value === 26) {
+      this.$right.next(false);
+      this.$left.next(true);
     }
   }
 
   previousDay() {
-    if (this.$eightHour.value !== 0) {
+    if (this.$eightHour.value !== 2) {
       const i = this.$eightHour.value;
-      this.$eightHour.next(i - 3);
+      this.$eightHour.next(i - 8);
       const ii = this.$twelveHour.value;
-      this.$twelveHour.next(ii - 3);
+      this.$twelveHour.next(ii - 8);
       const iii = this.$pmHour.value;
-      this.$pmHour.next(iii - 3);
-      this.left.next(true);
-      this.right.next(true);
+      this.$pmHour.next(iii - 8);
+      this.$left.next(true);
+      this.$right.next(true);
     }
-    if (this.$eightHour.value === 0) {
-      this.left.next(false);
-      this.right.next(true);
+    if (this.$eightHour.value === 2) {
+      this.$left.next(false);
+      this.$right.next(true);
     }
-    /*     let i = this.$di.value;
-        this.$di.next(i - 1);
-        this.$pmHour.next(this.locations[this.$i.value].forcast[this.$di.value]);
-        i = this.$di.value;
-        this.$di.next(i - 1);
-        this.$twelveHour.next(this.locations[this.$i.value].forcast[this.$di.value]);
-        i = this.$di.value;
-        this.$di.next(i - 1);
-        this.$eightHour.next(this.locations[this.$i.value].forcast[this.$di.value]); */
   }
 
   resetDay() {
-    this.$eightHour.next(0);
-    this.$twelveHour.next(1);
-    this.$pmHour.next(2);
-    this.left.next(false);
-    this.right.next(true);
+    this.$eightHour.next(2);
+    this.$twelveHour.next(4);
+    this.$pmHour.next(6);
+    this.$left.next(false);
+    this.$right.next(true);
   }
 }
