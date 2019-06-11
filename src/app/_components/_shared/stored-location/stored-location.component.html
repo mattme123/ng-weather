@@ -1,16 +1,16 @@
-<div class='container-fluid bg' [style.background-image]="'url(' + image + ')'" id={{id}}>
-  <div class="row">
-    <div class="col-1">
-      <div (click)='delete($event)' class='delete text-center'></div>
+<div class='container-fluid bg' (click)='weatherClicked($event)' [style.background-image]="'url(' + image + ')'" id={{id}}>
+  <div class="row" id={{id}}>
+    <div class="col-1" id={{id}}>
+      <div (click)='delete($event)' class='delete text-center' id={{id}}></div>
     </div>
-    <div class="col-8 point">
-      <h1 class='d-flex justify-content-start text'>
+    <div class="col-8 point" id={{id}}>
+      <h1 class='d-flex justify-content-start text' id={{id}}>
         {{title}}
       </h1>
     </div>
-    <div class="col-1 point"> </div>
-    <div class="col-1 point">
-      <h1 class='d-flex justify-content-end deg text'>
+    <div class="col-1 point" id={{id}}> </div>
+    <div class="col-1 point" id={{id}}>
+      <h1 class='d-flex justify-content-end deg text' id={{id}}>
         {{degree}}º
       </h1>
     </div>

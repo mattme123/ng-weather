@@ -16,6 +16,47 @@ h2 {
 .sunny {
   background-image: url(../../../../assets/icons/sunny.png);
   background-repeat: no-repeat;
-  width: 15em;
-  height: 15vh;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
+}
+
+.partly-cloudy {
+  background-image: url(../../../../assets/icons/mostlyCloudy.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
+}
+
+.mostly-cloudy {
+  background-image: url(../../../../assets/icons/cloudy.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
+}
+
+.rain {
+  background-image: url(../../../../assets/icons/rain.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
+}
+
+.snow {
+  background-image: url(../../../../assets/icons/snow.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
+}
+
+.mist {
+  background-image: url(../../../../assets/icons/mist.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5vw;
+  height: 10vh;
 }

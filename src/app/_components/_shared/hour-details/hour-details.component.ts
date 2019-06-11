@@ -14,35 +14,45 @@ export class HourDetailsComponent implements OnInit, OnChanges {
   constructor() { }
   ngOnInit() {
     if (this.time === 14) {
-      this.time = 12;
+      this.time = 2;
     } else if (this.time === 20) {
       this.time = 8;
     }
   }
 
   ngOnChanges() {
-    console.log(this.clouds);
-    const img = document.getElementById('img');
-    img.className = 'sunny';
+    const img = document.getElementsByClassName('img');
+    /*    img[0].className = 'img sunny';
+       img[1].className = 'img sunny';
+       img[2].className = 'img sunny'; */
     if (this.time === 14) {
-      this.time = 12;
+      this.time = 2;
     } else if (this.time === 20) {
       this.time = 8;
     }
-    /* if (this.summary === 'rain') {
-      img.className = 'rain';
+
+    if (this.summary === 'rain') {
+      setIcons('rain');
     } else if (this.summary === 'snow') {
-      img.className = 'snow';
+      setIcons('snow');
     } else if (this.summary === 'clouds') {
-      img.className = 'clouds';
+      setIcons('clouds');
+    } else if (this.summary === 'mist') {
+      setIcons('mist');
     } else if (this.clouds > 70) {
-      img.className = 'mostly-cloudy';
+      setIcons('mostly-cloudy');
     } else if (this.clouds > 30) {
-      img.className = 'partly-cloudy';
-    } else if (this.clouds < 27) {
-      console.log('sun');
-      img.className = 'sunny';
-    } */
+      setIcons('partly-cloudy');
+    } else {
+      setIcons('sunny');
+    }
+
+    function setIcons(condition: string) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < img.length; i++) {
+        img[i].className = `img ${condition}`;
+      }
+    }
   }
 
 }

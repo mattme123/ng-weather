@@ -82,7 +82,7 @@ export class DayDetailsComponent implements OnInit {
           } else if (res === 18) {
             this.high = this.day3H;
             this.low = this.day3L;
-          } else if (res < 26) {
+          } else if (res === 26) {
             this.high = this.day4H;
             this.low = this.day4L;
           }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
 import { LocationService } from 'src/app/_services/location.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'weather-home-page',
@@ -14,7 +13,7 @@ export class HomePageComponent implements OnInit {
   ok = false;
   t = '';
   img = '../../../../assets/photos/home.jpg';
-  constructor(private api$: ApiService, public location$: LocationService, private router: Router) { }
+  constructor(private api$: ApiService, public location$: LocationService) { }
 
 
   ngOnInit() {
@@ -50,15 +49,10 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  weatherClicked(e) {
-    this.location$.setLocation(e.target.parentElement.parentElement.parentElement.id);
-    this.router.navigate(['/details']);
-  }
-
 
   validateString(inputTxt: string) {
     const letters = /^[a-zA-Z0-9]+$/;
-    if (inputTxt.match(letters) && Number(inputTxt) && inputTxt.length === 5) {
+    if (inputTxt.match(letters)) {
       return true;
     } else {
       return false;

@@ -13,6 +13,12 @@ export class CurrentLocationGeoComponent implements OnInit {
   loaded = false;
   ngOnInit() {
     this.getLocation();
+    setTimeout(() => {
+      if (!this.loaded) {
+        this.temp = 'Location not found';
+        this.loaded = true;
+      }
+    }, 10000);
   }
 
   getLocation() {
@@ -21,7 +27,8 @@ export class CurrentLocationGeoComponent implements OnInit {
         this.showPosition(position.coords);
       });
     } else {
-      alert('Geolocation is not supported by this browser. Current Location will not be accurate.');
+      this.temp = 'Location not found';
+      this.loaded = true;
     }
   }
 
@@ -35,6 +42,7 @@ export class CurrentLocationGeoComponent implements OnInit {
         },
         err => {
           this.temp = 'Location not found';
+          this.loaded = true;
         }
       );
   }

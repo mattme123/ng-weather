@@ -13,7 +13,7 @@
   </div>
   <div class="row" id='itemRow'>
     <div *ngFor='let location of location$.locations; index as i' class="col-4 mt-3">
-      <weather-stored-location (click)='weatherClicked($event)' [image]='img' [id]='i' [title]='location.name'
+      <weather-stored-location [image]='img' [id]='i' [title]='location.name'
         [degree]='location.temp'>
       </weather-stored-location>
     </div>
@@ -25,10 +25,13 @@
   </div>
   <div *ngIf='add && !listFull' class='row mt-4'>
     <div class="col"></div>
-    <div class="col-2 d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center">
       <input [(ngModel)]='t' type="text" class="form-control" id='ipt' placeholder="Add City">
     </div>
     <div class="col"></div>
+    <div class="col-12">
+        <p class="text-center white">Enter a US zipcode or city name</p>
+    </div>
     <div class="col-12 d-flex justify-content-center">
       <button (click)='changeAdd()' type='button' class='btn btn-danger mr-1 mt-2'>Cancel</button>
       <button (click)='addItem()' type='button' class='btn btn-success ml-1 mt-2'>Add</button>

@@ -40,7 +40,13 @@ export class ApiService implements OnInit {
   }
 
   addLocation(url: any) {
-    this.httpGet(this.weatherURLZip + url + this.apiKey)
+    let passURL: any;
+    if (isNaN(parseInt(url, 10))) {
+      passURL = `${this.weatherURL}${url},us${this.apiKey}`;
+    } else {
+      passURL = this.weatherURLZip + url + this.apiKey;
+    }
+    this.httpGet(passURL)
       .subscribe(
         res => {
           this.tempObj.clouds = res.clouds.all;
